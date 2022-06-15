@@ -9,7 +9,7 @@ describe('backend-express-template routes', () => {
   });
   it('/flowers returns a list of flowers', async () => {
     const res = await request(app).get('/flowers');
-    const flowers = await.getAllFlowers();
+    const flowers = await Flower.getAllFlowers();
     const expected = flowers.map((flower) => {
       return { id: flower.id, name: flower.name, color: flower.color };
     });
