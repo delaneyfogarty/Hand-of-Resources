@@ -7,8 +7,13 @@ describe('backend-express-template routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
-  it('example test - delete me!', () => {
-    expect(1).toEqual(1);
+  it('/flowers returns a list of flowers', async () => {
+    const res = await request(app).get('/flowers');
+    const flowers = await.getAllFlowers();
+    const expected = flowers.map((flower) => {
+      return { id: flower.id, name: flower.name, color: flower.color };
+    });
+    expect(res.body).toEqual(expected);
   });
   afterAll(() => {
     pool.end();
