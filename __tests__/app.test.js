@@ -2,6 +2,7 @@ const pool = require('../lib/utils/pool');
 const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
+const Flower = require('../lib/models/Flower');
 
 describe('backend-express-template routes', () => {
   beforeEach(() => {
@@ -15,6 +16,17 @@ describe('backend-express-template routes', () => {
     });
     expect(res.body).toEqual(expected);
   });
+
+  it('/flowers/:id returns one specific flower', async () => {
+    const res = await request(app).get('/flowers/1');
+    const rose = {
+      id: '1',
+      name: 'Rose',
+      color: 'Red',
+    };
+    expect(res.body).toEqual(rose);
+  });
+
   afterAll(() => {
     pool.end();
   });
