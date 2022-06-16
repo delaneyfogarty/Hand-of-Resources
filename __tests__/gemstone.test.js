@@ -9,6 +9,12 @@ describe('backend-express-template routes', () => {
     return setup(pool);
   });
 
+  it('/gemstones/:id should return one gemstone', async () => {
+    const res = await request(app).get('/gemstones/2');
+    const citrine = await Gemstone.getSingleGemstone(2);
+    expect(res.body).toEqual(citrine);
+  });
+
   it('/gemstones should return a list of gemstones', async () => {
     const res = await request(app).get('/gemstones');
     const allGemstones = await Gemstone.getAllGemstones();
