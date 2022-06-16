@@ -9,6 +9,19 @@ describe('backend-express-template routes', () => {
     return setup(pool);
   });
 
+  it('should create a new gemstone', async () => {
+    const newGemstone = {
+      id: '5',
+      name: 'Ruby',
+      properties: 'Energy, Concentration, Creativity',
+      birth_stone: true,
+    };
+    const res = await request(app).post('/gemstones').send(newGemstone);
+    expect(res.body.name).toEqual(newGemstone.name);
+    expect(res.body.properties).toEqual(newGemstone.properties);
+    expect(res.body.birth_stone).toEqual(newGemstone.birth_stone);
+  });
+
   it('/gemstones/:id should return one gemstone', async () => {
     const res = await request(app).get('/gemstones/2');
     const citrine = await Gemstone.getSingleGemstone(2);
@@ -28,6 +41,8 @@ describe('backend-express-template routes', () => {
     });
     expect(res.body).toEqual(expected);
   });
+
+  it('/gemstones/:id should update a gemstone', async () => {});
 
   afterAll(() => {
     pool.end();
