@@ -45,6 +45,14 @@ describe('backend-express-template routes', () => {
     expect(res.status).toEqual(200);
   });
 
+  it('DELETE /flower/:id should delete a flower', async () => {
+    const res = await request(app).delete('/flower/3');
+    expect(res.status).toEqual(200);
+
+    const { body } = await request(app).get('/flower/3');
+    expect(body).toEqual('');
+  });
+
   afterAll(() => {
     pool.end();
   });
