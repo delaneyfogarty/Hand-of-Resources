@@ -39,6 +39,12 @@ describe('backend-express-template routes', () => {
     expect(res.body.color).toEqual(newFlower.color);
   });
 
+  it('PUT /flowers/:id should update flower', async () => {
+    const res = await request(app).put('/flowers/2').send({ color: 'Pink' });
+    expect(res.body.color).toEqual('Pink');
+    expect(res.status).toEqual(200);
+  });
+
   afterAll(() => {
     pool.end();
   });
