@@ -27,6 +27,18 @@ describe('backend-express-template routes', () => {
     expect(res.body).toEqual(rose);
   });
 
+  it('should add a new flower', async () => {
+    const newFlower = new Flower({
+      id: '6',
+      name: 'Tulip',
+      color: 'Yellow',
+    });
+    const res = await request(app).post('/flowers').send(newFlower);
+    expect(res.body.id).toEqual(newFlower.id);
+    expect(res.body.name).toEqual(newFlower.name);
+    expect(res.body.color).toEqual(newFlower.color);
+  });
+
   afterAll(() => {
     pool.end();
   });
