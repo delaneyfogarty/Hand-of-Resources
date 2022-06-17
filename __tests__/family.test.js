@@ -24,6 +24,18 @@ describe('backend-express-template routes', () => {
     expect(res.body).toEqual(expected);
   });
 
+  it('/family/:id returns one family member', async () => {
+    const res = await request(app).get('/family/11');
+    const juliet = {
+      id: '11',
+      name: 'Juliet',
+      gender: 'Female',
+      relationship: 'Aunt',
+      age: 38,
+    };
+    expect(res.body).toEqual(juliet);
+  });
+
   afterAll(() => {
     pool.end();
   });
