@@ -60,6 +60,14 @@ describe('backend-express-template routes', () => {
     expect(res.status).toEqual(200);
   });
 
+  it('DELETE /cat/:id should delete a cat', async () => {
+    const res = await request(app).delete('/cats/3');
+    expect(res.status).toEqual(200);
+
+    const { body } = await request(app).get('/cats/3');
+    expect(body).toEqual(null);
+  });
+
   afterAll(() => {
     pool.end();
   });
