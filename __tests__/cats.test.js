@@ -24,6 +24,18 @@ describe('backend-express-template routes', () => {
     expect(res.body).toEqual(expected);
   });
 
+  it('/cats/:id returns one specific cat', async () => {
+    const res = await request(app).get('/cats/1');
+    const boi = {
+      id: '1',
+      name: 'Boi George',
+      color: 'Tuxedo',
+      favorite_food: 'Tuna',
+      age: 1,
+    };
+    expect(res.body).toEqual(boi);
+  });
+
   afterAll(() => {
     pool.end();
   });
