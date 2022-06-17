@@ -58,6 +58,14 @@ describe('backend-express-template routes', () => {
     expect(res.status).toEqual(200);
   });
 
+  it('DELETE /family/:id should delete a family member', async () => {
+    const res = await request(app).delete('/family/3');
+    expect(res.status).toEqual(200);
+
+    const { body } = await request(app).get('/family/3');
+    expect(body).toEqual(null);
+  });
+
   afterAll(() => {
     pool.end();
   });
