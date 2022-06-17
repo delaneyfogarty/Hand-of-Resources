@@ -42,6 +42,12 @@ describe('backend-express-template routes', () => {
     expect(res.body.birth_stone).toEqual(pisces.birth_stone);
   });
 
+  it('PUT /zodiacs/:id should update a zodiac', async () => {
+    const res = await request(app).put('/zodiacs/3').send({ name: 'Scorpio' });
+    expect(res.body.name).toEqual('Scorpio');
+    expect(res.status).toEqual(200);
+  });
+
   afterAll(() => {
     pool.end();
   });
