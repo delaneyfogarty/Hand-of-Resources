@@ -29,6 +29,19 @@ describe('backend-express-template routes', () => {
     expect(res.body).toEqual(expected);
   });
 
+  it('should add the last zodiac to the table', async () => {
+    const pisces = {
+      id: '12',
+      name: 'Pisces',
+      months: 'February 19 - March 20',
+      birth_stone: 'Amethyst and Aquamarine',
+    };
+    const res = await request(app).post('/zodiacs').send(pisces);
+    expect(res.body.name).toEqual(pisces.name);
+    expect(res.body.months).toEqual(pisces.months);
+    expect(res.body.birth_stone).toEqual(pisces.birth_stone);
+  });
+
   afterAll(() => {
     pool.end();
   });
