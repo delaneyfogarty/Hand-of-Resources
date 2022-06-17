@@ -48,6 +48,14 @@ describe('backend-express-template routes', () => {
     expect(res.status).toEqual(200);
   });
 
+  it('DELETE /zodiacs/:id should delete a zodiac', async () => {
+    const res = await request(app).delete('/zodiacs/6');
+    expect(res.status).toEqual(200);
+
+    const { body } = await request(app).get('/zodiacs/6');
+    expect(body).toEqual(null);
+  });
+
   afterAll(() => {
     pool.end();
   });
