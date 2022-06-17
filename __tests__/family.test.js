@@ -52,6 +52,12 @@ describe('backend-express-template routes', () => {
     expect(res.body.age).toEqual(xtina.age);
   });
 
+  it('PUT /family/:id should update a family member', async () => {
+    const res = await request(app).put('/family/2').send({ age: 18 });
+    expect(res.body.age).toEqual(18);
+    expect(res.status).toEqual(200);
+  });
+
   afterAll(() => {
     pool.end();
   });
