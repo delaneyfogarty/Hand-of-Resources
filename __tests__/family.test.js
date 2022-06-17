@@ -2,6 +2,7 @@ const pool = require('../lib/utils/pool');
 const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
+const Family = require('../lib/models/Family');
 
 describe('backend-express-template routes', () => {
   beforeEach(() => {
@@ -10,7 +11,7 @@ describe('backend-express-template routes', () => {
 
   it('/family returns a list of family members', async () => {
     const res = await request(app).get('/family');
-    const family = await Family.getAllFamily();
+    const family = await Family.getAllFamilyMembers();
     const expected = family.map((member) => {
       return {
         id: member.id,
