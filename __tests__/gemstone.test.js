@@ -42,7 +42,22 @@ describe('backend-express-template routes', () => {
     expect(res.body).toEqual(expected);
   });
 
-  it('/gemstones/:id should update a gemstone', async () => {});
+  it('PUT /gemstones/:id should update a gemstone', async () => {
+    const res = await request(app)
+      .put('/gemstones/3')
+      .send({ name: 'Emerald' });
+    console.log(res);
+    expect(res.body.name).toEqual('Emerald');
+    expect(res.status).toEqual(200);
+  });
+
+  it('DELETE /gemstones/:id should delete a gemstone', async () => {
+    const res = await request(app).delete('/gemstones/4');
+    expect(res.status).toEqual(200);
+
+    const { body } = await request(app).get('/gemstones/4');
+    expect(body).toEqual(null);
+  });
 
   afterAll(() => {
     pool.end();
