@@ -36,6 +36,22 @@ describe('backend-express-template routes', () => {
     expect(res.body).toEqual(juliet);
   });
 
+  it('add a new family member', async () => {
+    const xtina = new Family({
+      id: '17',
+      name: 'Xtina',
+      gender: 'Female',
+      relationship: 'Bestie',
+      age: 36,
+    });
+    const res = await request(app).post('/family').send(xtina);
+    expect(res.body.id).toEqual(xtina.id);
+    expect(res.body.name).toEqual(xtina.name);
+    expect(res.body.gender).toEqual(xtina.gender);
+    expect(res.body.relationship).toEqual(xtina.relationship);
+    expect(res.body.age).toEqual(xtina.age);
+  });
+
   afterAll(() => {
     pool.end();
   });
