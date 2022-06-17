@@ -5,6 +5,7 @@ DROP table if exists flowers;
 DROP table if exists gemstones;
 DROP table if exists cats;
 DROP table if exists zodiacs;
+DROP table if exists family;
 
 CREATE table flowers (
 	id BIGINT GENERATED ALWAYS AS IDENTITY,
@@ -67,3 +68,29 @@ INSERT INTO zodiacs (name, months, birth_stone) VALUES
 ('Sagittarius', 'November 22 - December 21', 'Citrine and Blue Topaz'),
 ('Capricorn', 'December 22 - January 19', 'Blue Topaz and Garnet'),
 ('Aquarius', 'January 20 - February 18', 'Garnet and Amethyst');
+
+CREATE table family (
+		id BIGINT GENERATED ALWAYS AS IDENTITY,
+		name VARCHAR NOT NULL,
+		gender VARCHAR NOT NULL,
+		relationship VARCHAR NOT NULL,
+		age INT NOT NULL
+);
+
+INSERT INTO family (name, gender, relationship, age) VALUES
+('Ainsley', 'Female', 'Sister', 20),
+('Teagan', 'Female', 'Sister', 17),
+('Ramsey', 'Female', 'Sister', 27),
+('Erin', 'Female', 'Mom', 48),
+('Johnny', 'Male', 'Uncle', 58),
+('Shannon', 'Female', 'Aunt', 53),
+('Kevin', 'Male', 'Uncle', 51),
+('Nicky', 'Male', 'Cousin', 16),
+('Daniel', 'Male', 'Cousin', 18),
+('Brennan', 'Male', 'Uncle', 43),
+('Juliet', 'Female', 'Aunt', 38),
+('Audrey', 'Female', 'Cousin', 4),
+('Brooke', 'Female', 'Cousin', 0.5),
+('Morgan', 'Female', 'Aunt', 37),
+('Sue', 'Female', 'Grandma', 74),
+('John', 'Male', 'Grandpa', 76);
