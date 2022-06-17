@@ -36,6 +36,22 @@ describe('backend-express-template routes', () => {
     expect(res.body).toEqual(boi);
   });
 
+  it('add a new cat', async () => {
+    const newCat = new Cat({
+      id: '7',
+      name: 'Butt-head',
+      color: 'Tabby',
+      favorite_food: 'Squirrel',
+      age: 8,
+    });
+    const res = await request(app).post('/cats').send(newCat);
+    expect(res.body.id).toEqual(newCat.id);
+    expect(res.body.name).toEqual(newCat.name);
+    expect(res.body.color).toEqual(newCat.color);
+    expect(res.body.favorite_food).toEqual(newCat.favorite_food);
+    expect(res.body.age).toEqual(newCat.age);
+  });
+
   afterAll(() => {
     pool.end();
   });
