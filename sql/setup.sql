@@ -4,6 +4,7 @@
 DROP table if exists flowers;
 DROP table if exists gemstones;
 DROP table if exists cats;
+DROP table if exists zodiacs;
 
 CREATE table flowers (
 	id BIGINT GENERATED ALWAYS AS IDENTITY,
@@ -46,3 +47,23 @@ INSERT INTO cats (name, color, favorite_food, age) VALUES
 ('Ada', 'Grey', 'Nothing', 13),
 ('Blue Diamond', 'White', 'Everything', 3),
 ('Eddy Boi', 'Grey', 'Avocado', 4);
+
+CREATE table zodiacs (
+	id BIGINT GENERATED ALWAYS AS IDENTITY,
+	name VARCHAR NOT NULL,
+	months VARCHAR NOT NULL,
+	birth_stone VARCHAR NOT NULL
+);
+
+INSERT INTO zodiacs (name, months, birth_stone) VALUES
+('Aries', 'March 21 - April 19', 'Aquamarine and Diamond'),
+('Taurus', 'April 20 - May 20', 'Diamond and Emerald'),
+('Gemini', 'May 21 - June 20', 'Emerald and Moonstone'),
+('Cancer', 'June 21 - July 22', 'Moonstone and Ruby'),
+('Leo', 'July 23 - August 22', 'Ruby and Peridot'),
+('Virgo', 'August 23 - September 22', 'Peridot and Sapphire'),
+('Libra', 'September 23 - October 22', 'Sapphire and Tourmaline'),
+('Scorpio', 'October 23 - November 21', 'Tourmaline and Citrine'),
+('Sagittarius', 'November 22 - December 21', 'Citrine and Blue Topaz'),
+('Capricorn', 'December 22 - January 19', 'Blue Topaz and Garnet'),
+('Aquarius', 'January 20 - February 18', 'Garnet and Amethyst');
